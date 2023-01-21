@@ -221,7 +221,7 @@ var config = {
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[8].data.push(120);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[9].data.push(120);
         /*  */
-        window.soundchart = new Chart(config.app.elements.context, config.app.variable);
+        window.lightchart = new Chart(config.app.elements.context, config.app.variable);
         config.app.lightmeter.update();
         /*  */
         if (navigator.mediaDevices) {
@@ -347,33 +347,33 @@ var config = {
           rgb.textContent = "rgb(" + R + ", " + G + ", " + B + ")";
           level.textContent = "R:" + R + " G:" + G + " B:" + B + " - Luminance:" + P + '%';
           /* R */
-          window.soundchart.data.datasets[0].data.push(pixel.rgba.r);
-          window.soundchart.data.datasets[1].data.push(pixel.rgba.r);
-          window.soundchart.data.datasets[0].data.shift();
-          window.soundchart.data.datasets[1].data.shift();
+          window.lightchart.data.datasets[0].data.push(pixel.rgba.r);
+          window.lightchart.data.datasets[1].data.push(pixel.rgba.r);
+          window.lightchart.data.datasets[0].data.shift();
+          window.lightchart.data.datasets[1].data.shift();
           /* G */
-          window.soundchart.data.datasets[2].data.push(pixel.rgba.g);
-          window.soundchart.data.datasets[3].data.push(pixel.rgba.g);
-          window.soundchart.data.datasets[2].data.shift();
-          window.soundchart.data.datasets[3].data.shift();
+          window.lightchart.data.datasets[2].data.push(pixel.rgba.g);
+          window.lightchart.data.datasets[3].data.push(pixel.rgba.g);
+          window.lightchart.data.datasets[2].data.shift();
+          window.lightchart.data.datasets[3].data.shift();
           /* B */
-          window.soundchart.data.datasets[4].data.push(pixel.rgba.b);
-          window.soundchart.data.datasets[5].data.push(pixel.rgba.b);
-          window.soundchart.data.datasets[4].data.shift();
-          window.soundchart.data.datasets[5].data.shift();
+          window.lightchart.data.datasets[4].data.push(pixel.rgba.b);
+          window.lightchart.data.datasets[5].data.push(pixel.rgba.b);
+          window.lightchart.data.datasets[4].data.shift();
+          window.lightchart.data.datasets[5].data.shift();
           /* A */
-          window.soundchart.data.datasets[6].data.push(pixel.rgba.a);
-          window.soundchart.data.datasets[7].data.push(pixel.rgba.a);
-          window.soundchart.data.datasets[6].data.shift();
-          window.soundchart.data.datasets[7].data.shift();
+          window.lightchart.data.datasets[6].data.push(pixel.rgba.a);
+          window.lightchart.data.datasets[7].data.push(pixel.rgba.a);
+          window.lightchart.data.datasets[6].data.shift();
+          window.lightchart.data.datasets[7].data.shift();
           /* L */
-          window.soundchart.data.datasets[8].data.push(pixel.luminance);
-          window.soundchart.data.datasets[9].data.push(pixel.luminance);
-          window.soundchart.data.datasets[8].data.shift();
-          window.soundchart.data.datasets[9].data.shift();
+          window.lightchart.data.datasets[8].data.push(pixel.luminance);
+          window.lightchart.data.datasets[9].data.push(pixel.luminance);
+          window.lightchart.data.datasets[8].data.shift();
+          window.lightchart.data.datasets[9].data.shift();
         }
         /*  */
-        window.soundchart.update();
+        window.lightchart.update();
       }
     }
   }
