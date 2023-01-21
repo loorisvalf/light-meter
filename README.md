@@ -4,9 +4,9 @@ This addon helps you easily measure some important light factors, such as red, g
 
 You can install this app as a PWA on your mobile device, moreover, it is available as a browser extension as well as a web application:
 
-Chrome: https://chrome.google.com/webstore/detail/  
-Edge: https://microsoftedge.microsoft.com/addons/detail/  
-Opera: https://addons.opera.com/en/extensions/details/  
+Chrome: https://chrome.google.com/webstore/detail/odomkcleacljnblhmigmlkjlplobpipn  
+Edge: https://microsoftedge.microsoft.com/addons/detail/bbkgepjchkbjodlikmajhgbciglldjbf  
+Opera: https://addons.opera.com/en/extensions/details/light-meter-rgb-luminance  
 Webapp & PWA: https://webbrowsertools.com/light-meter/  
 
 ----------------------------------------------------------------------------
