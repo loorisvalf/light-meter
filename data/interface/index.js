@@ -77,6 +77,7 @@ var config = {
     }
   },
   "load": function () {
+    config.app.elements.theme = document.getElementById("theme");
     config.app.elements.video = document.querySelector(".video");
     config.app.elements.canvas = document.querySelector("canvas");
     config.app.elements.loader = document.querySelector(".loader");
@@ -138,6 +139,16 @@ var config = {
       e.target.nextElementSibling.value = percent + ' ' + '(' + info + ')';
     });
     /*  */
+    config.app.elements.theme.addEventListener("click", function () {
+      let attribute = document.documentElement.getAttribute("theme");
+      attribute = attribute === "dark" ? "light" : "dark";
+      /*  */
+      document.documentElement.setAttribute("theme", attribute);
+      config.app.update.chart.color(OPTIONS, attribute);
+      config.storage.write("theme", attribute);
+      window.lightchart.update();
+    });
+    /*  */
     config.storage.load(config.app.start);
     window.removeEventListener("load", config.load, false);
   },
@@ -165,13 +176,39 @@ var config = {
       get value () {return config.storage.read("interval") !== undefined ? config.storage.read("interval") : 250}
     },
     "start": function () {
+      const theme = config.storage.read("theme") !== undefined ? config.storage.read("theme") : "light";
+      /*  */
       if (config.app.interval.instance) window.clearInterval(config.app.interval.instance);
       if (config.port.name === "popup") config.app.variable.options.layout.padding.bottom = 58;
       /*  */
       config.app.elements.calibration.value = config.app.calibration.value;
       config.app.elements.interval.value = config.app.interval.value;
+      document.documentElement.setAttribute("theme", theme);
+      config.app.update.chart.color(OPTIONS, theme);
       /*  */
       config.app.lightmeter.start();
+    },
+    "update": {
+      "chart": {
+        "color": function (e, theme) {
+          const color = theme === "light" ? "#333333" : "#ebebeb";
+          const rgb = theme === "light" ? "rgb(0 0 0 / 10%)" : "rgb(255 255 255 / 10%)";
+          /*  */
+          const _update = function (obj) {
+            for (const key in obj) {
+              if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                if (key === "color" && typeof obj[key] === "string") {
+                  obj[key] = obj[key].startsWith("rgb") ? rgb : color;
+                } else if (typeof obj[key] === "object" && obj[key] !== null) {
+                  _update(obj[key]);
+                }
+              }
+            }
+          }
+          /*  */
+          _update(e);
+        }
+      }
     },
     "lightmeter": {
       "video": null,
@@ -198,7 +235,7 @@ var config = {
           }
         }
       },
-      "start": function  () {
+      "start": async function  () {
         config.app.lightmeter.metrics.start = Date.now();
         config.app.elements.loader.style.display = "block";
         config.app.elements.camera.checked = config.app.show.camera;
@@ -212,9 +249,9 @@ var config = {
         for (let i = 0; i < 30; i++) config.app.variable.data.labels.push((i + 1) + '');
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[0].data.push(165);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[1].data.push(165);
-        for (let i = 0; i < 30; i++) config.app.variable.data.datasets[2].data.push(160);
+        for (let i = 0; i < 30; i++) config.app.variable.data.datasets[2].data.push(160.1);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[3].data.push(160);
-        for (let i = 0; i < 30; i++) config.app.variable.data.datasets[4].data.push(155);
+        for (let i = 0; i < 30; i++) config.app.variable.data.datasets[4].data.push(155.2);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[5].data.push(155);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[6].data.push(150);
         for (let i = 0; i < 30; i++) config.app.variable.data.datasets[7].data.push(150);
